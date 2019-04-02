@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.bkz.demo.http.base.BaseData;
@@ -51,6 +52,14 @@ public class MainActivity extends AppCompatActivity {
 
         adapter = new CyclePagerAdapter(this, drawables, viewPager);
         viewPager.setAdapter(adapter);
+        viewPager.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                handler.removeCallbacksAndMessages(null);
+                handler.sendEmptyMessageDelayed(0, 2_000);
+                return false;
+            }
+        });
 
         if (adapter.getCount() > 1) {
             viewPager.setCurrentItem(1);
