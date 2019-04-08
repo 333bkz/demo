@@ -7,6 +7,8 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.util.concurrent.TimeUnit;
 
+import javax.annotation.Nullable;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -37,7 +39,7 @@ public final class Http {
         okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
                     @Override
-                    public void log(String message) {//访问网络请求，和服务端响应请求时。将数据拦截并输出
+                    public void log(@Nullable String message) {//访问网络请求，和服务端响应请求时。将数据拦截并输出
                         Log.e(TAG, message);
                     }
                 }).setLevel(HttpLoggingInterceptor.Level.BODY))
